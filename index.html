@@ -28,7 +28,7 @@
   --font-title: 'Cormorant Garamond', Georgia, serif;
   --font-body:  'Montserrat', sans-serif;
 
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
 }
 
@@ -65,9 +65,7 @@ a  { text-decoration: none; color: inherit; }
 ───────────────────────────────────────────────────────────────── */
 #navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 1000;
   background: var(--blanco);
   height: 72px;
@@ -82,13 +80,7 @@ a  { text-decoration: none; color: inherit; }
   border-color: rgba(125, 25, 53, 0.12);
   box-shadow: 0 2px 32px rgba(42,42,42,0.07);
 }
-
-.nav-logo img {
-  height: 38px;
-  width: auto;
-  object-fit: contain;
-}
-
+.nav-logo img { height: 38px; width: auto; object-fit: contain; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -108,10 +100,8 @@ a  { text-decoration: none; color: inherit; }
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
   background: var(--guinda);
   transition: width 0.3s var(--ease-out);
 }
@@ -120,11 +110,14 @@ a  { text-decoration: none; color: inherit; }
 
 
 /* ─────────────────────────────────────────────────────────────────
-   2. HERO
+   2. HERO — foto + overlay guinda
 ───────────────────────────────────────────────────────────────── */
 #hero {
   min-height: 100vh;
   background-color: var(--guinda);
+  background-image: url('hero-bg.png');
+  background-size: cover;
+  background-position: center center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,26 +128,25 @@ a  { text-decoration: none; color: inherit; }
   text-align: center;
 }
 
-/* Subtle noise grain */
+/* Overlay guinda semitransparente sobre la foto */
 #hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.18;
+  background: rgba(125, 25, 53, 0.62);
   pointer-events: none;
 }
 
-/* Large decorative B background */
+/* Large decorative B */
 .hero-deco {
   position: absolute;
-  bottom: -80px;
-  right: -60px;
+  bottom: -80px; right: -60px;
   width: 520px;
-  opacity: 0.06;
+  opacity: 0.07;
   pointer-events: none;
   filter: brightness(0) invert(1);
   animation: floatDeco 14s ease-in-out infinite;
+  z-index: 2;
 }
 @keyframes floatDeco {
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -163,7 +155,7 @@ a  { text-decoration: none; color: inherit; }
 
 .hero-inner {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,8 +173,7 @@ a  { text-decoration: none; color: inherit; }
 }
 
 .hero-rule {
-  width: 1px;
-  height: 48px;
+  width: 1px; height: 48px;
   background: linear-gradient(to bottom, transparent, rgba(250,247,245,0.4), transparent);
   margin-bottom: 36px;
   animation: heroRuleIn 1s var(--ease-out) 0.3s both;
@@ -225,23 +216,13 @@ a  { text-decoration: none; color: inherit; }
   margin: 44px 0;
   animation: heroTextIn 1.1s var(--ease-out) 0.7s both;
 }
-.hero-divider-line {
-  width: 60px;
-  height: 1px;
-  background: rgba(250,247,245,0.25);
-}
-.hero-divider-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--rosa);
-}
+.hero-divider-line { width: 60px; height: 1px; background: rgba(250,247,245,0.25); }
+.hero-divider-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--rosa); }
 
 .btn-hero {
   display: inline-block;
   background: var(--rosa);
   color: var(--guinda);
-  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 3.5px;
@@ -250,24 +231,23 @@ a  { text-decoration: none; color: inherit; }
   border-radius: 2px;
   transition: background 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
   animation: heroTextIn 1.1s var(--ease-out) 0.85s both;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
 .btn-hero:hover {
   background: var(--blanco);
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
 }
 
-/* Scroll indicator */
 .hero-scroll {
   position: absolute;
-  bottom: 36px;
-  left: 50%;
+  bottom: 36px; left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  z-index: 3;
   animation: heroTextIn 1.2s var(--ease-out) 1.4s both;
 }
 .hero-scroll span {
@@ -277,8 +257,7 @@ a  { text-decoration: none; color: inherit; }
   color: rgba(250,247,245,0.4);
 }
 .scroll-line {
-  width: 1px;
-  height: 40px;
+  width: 1px; height: 40px;
   background: linear-gradient(to bottom, rgba(250,247,245,0.5), transparent);
   animation: scrollBounce 2s ease-in-out infinite;
 }
@@ -342,10 +321,7 @@ a  { text-decoration: none; color: inherit; }
   max-width: 620px;
   letter-spacing: 0.2px;
 }
-.proposito-text strong {
-  font-weight: 500;
-  color: var(--carbon);
-}
+.proposito-text strong { font-weight: 500; color: var(--carbon); }
 
 
 /* ─────────────────────────────────────────────────────────────────
@@ -362,19 +338,27 @@ a  { text-decoration: none; color: inherit; }
   align-items: flex-start;
   margin-bottom: 56px;
 }
-.section-header-center {
-  align-items: center;
-  text-align: center;
-}
+.section-header-center { align-items: center; text-align: center; }
+
 .section-title {
   font-family: var(--font-title);
   font-size: clamp(36px, 4.5vw, 58px);
   font-weight: 300;
   line-height: 1.1;
 }
-.section-title-light { color: var(--blanco); }
-.section-title-dark  { color: var(--carbon); }
-.section-title-guinda{ color: var(--guinda); }
+.section-title-light  { color: var(--blanco); }
+.section-title-dark   { color: var(--carbon); }
+.section-title-guinda { color: var(--guinda); }
+
+/* ── Flatlay destacada ── */
+.producto-flatlay {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto 64px;
+  border-radius: 8px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.45);
+  object-fit: cover;
+}
 
 .products-grid {
   display: grid;
@@ -430,9 +414,21 @@ a  { text-decoration: none; color: inherit; }
   color: rgba(250,247,245,0.08);
   line-height: 1;
   position: absolute;
-  top: 20px;
-  right: 24px;
+  top: 20px; right: 24px;
 }
+
+/* ── Imagen de bote dentro de la card ── */
+.product-img-bote {
+  width: 180px;
+  max-width: 100%;
+  margin: 8px auto 0;
+  object-fit: contain;
+  display: block;
+  /* Sutil glow para destacarla sobre el fondo oscuro */
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+  transition: transform 0.4s var(--ease-out);
+}
+.product-card:hover .product-img-bote { transform: scale(1.04) translateY(-4px); }
 
 .product-name {
   font-family: var(--font-title);
@@ -460,12 +456,7 @@ a  { text-decoration: none; color: inherit; }
   padding-top: 16px;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
-.product-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--rosa);
-}
+.product-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rosa); }
 .product-cta {
   font-size: 10px;
   font-weight: 500;
@@ -478,7 +469,7 @@ a  { text-decoration: none; color: inherit; }
 
 
 /* ─────────────────────────────────────────────────────────────────
-   5. VALORES
+   5. VALORES / PILARES
 ───────────────────────────────────────────────────────────────── */
 #valores {
   background: var(--blanco);
@@ -488,7 +479,7 @@ a  { text-decoration: none; color: inherit; }
 .valores-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
+  gap: 32px;
   margin-top: 56px;
 }
 
@@ -498,9 +489,9 @@ a  { text-decoration: none; color: inherit; }
   align-items: center;
   text-align: center;
   gap: 20px;
-  padding: 48px 32px;
   border: 1px solid rgba(125,25,53,0.1);
-  border-radius: 4px;
+  border-radius: 6px;
+  overflow: hidden;                  /* necesario para imagen flush */
   transition: border-color 0.3s, box-shadow 0.4s, transform 0.4s var(--ease-out);
 }
 .valor-card:hover {
@@ -509,19 +500,40 @@ a  { text-decoration: none; color: inherit; }
   transform: translateY(-4px);
 }
 
+/* Contenido interno con padding (separado de la imagen) */
+.valor-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 32px 40px;
+  width: 100%;
+}
+
+/* ── Imagen visual en card Verdad (flush arriba) ── */
+.valor-visual-img {
+  width: 100%;
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0;                  /* la card ya tiene border-radius */
+  flex-shrink: 0;
+  transition: transform 0.5s var(--ease-out);
+}
+.valor-card:hover .valor-visual-img { transform: scale(1.03); }
+
 .valor-icon {
-  width: 56px;
-  height: 56px;
+  width: 52px; height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(125,25,53,0.06);
+  background: rgba(125,25,53,0.07);
   flex-shrink: 0;
 }
 .valor-icon svg {
-  width: 26px;
-  height: 26px;
+  width: 24px; height: 24px;
   stroke: var(--guinda);
   fill: none;
   stroke-width: 1.5;
@@ -547,40 +559,137 @@ a  { text-decoration: none; color: inherit; }
 
 
 /* ─────────────────────────────────────────────────────────────────
-   6. CLIENTE IDEAL
+   6. NOSOTRAS — nueva sección (entre Pilares y Cliente Ideal)
+───────────────────────────────────────────────────────────────── */
+#nosotras {
+  background: var(--carbon);
+  padding: 120px 56px;
+}
+
+.nosotras-inner {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nosotras-img {
+  flex: 0 0 460px;
+  position: relative;
+}
+.nosotras-img img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 24px 72px rgba(0,0,0,0.5);
+  /* Sutil borde rosa palo */
+  outline: 1px solid rgba(232,180,191,0.15);
+  outline-offset: -1px;
+}
+/* Acento decorativo detrás de la imagen */
+.nosotras-img::before {
+  content: '';
+  position: absolute;
+  top: 20px; left: -20px;
+  right: 20px; bottom: -20px;
+  border: 1px solid rgba(232,180,191,0.12);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.nosotras-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.nosotras-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nosotras-rule-line { width: 40px; height: 1px; background: rgba(232,180,191,0.35); }
+.nosotras-rule-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--rosa); }
+
+.nosotras-title {
+  font-family: var(--font-title);
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--blanco);
+  line-height: 1.1;
+}
+
+.nosotras-text {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.95;
+  color: var(--gray-soft);
+  max-width: 480px;
+}
+.nosotras-text strong { font-weight: 500; color: var(--blanco); }
+
+.nosotras-tagline {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--rosa);
+  margin-top: 8px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   7. CLIENTE IDEAL — layout dos columnas
 ───────────────────────────────────────────────────────────────── */
 #cliente {
   background: var(--rosa-light);
-  padding: 140px 40px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 120px 56px;
   position: relative;
   overflow: hidden;
 }
+
+/* Radial glow decorativo */
 #cliente::before {
   content: '';
   position: absolute;
-  top: -120px;
-  left: 50%;
+  top: -100px; left: 50%;
   transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
+  width: 700px; height: 700px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(125,25,53,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
+.cliente-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cliente-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
 .cliente-headline {
   font-family: var(--font-title);
-  font-size: clamp(30px, 4.5vw, 58px);
+  font-size: clamp(30px, 4vw, 54px);
   font-weight: 400;
   font-style: italic;
   color: var(--guinda);
   line-height: 1.15;
-  max-width: 760px;
-  margin-bottom: 32px;
+  max-width: 600px;
+  margin-bottom: 28px;
 }
 
 .cliente-sub {
@@ -588,10 +697,10 @@ a  { text-decoration: none; color: inherit; }
   font-weight: 300;
   line-height: 2;
   color: var(--gray-text);
-  max-width: 560px;
-  margin-bottom: 52px;
+  max-width: 480px;
+  margin-bottom: 48px;
 }
-.cliente-sub p + p { margin-top: 6px; }
+.cliente-sub p + p { margin-top: 4px; }
 
 .btn-guinda {
   display: inline-block;
@@ -616,14 +725,37 @@ a  { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 .cliente-rule-line { width: 48px; height: 1px; background: rgba(125,25,53,0.25); }
 .cliente-rule-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--guinda); }
 
+/* ── Imagen lado derecho ── */
+.cliente-img {
+  flex: 0 0 380px;
+  position: relative;
+}
+.cliente-img img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 20px 64px rgba(125,25,53,0.18);
+}
+/* Marco decorativo */
+.cliente-img::after {
+  content: '';
+  position: absolute;
+  top: -14px; right: -14px;
+  left: 14px; bottom: 14px;
+  border: 1px solid rgba(125,25,53,0.18);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: -1;
+}
+
 
 /* ─────────────────────────────────────────────────────────────────
-   7. FOOTER
+   8. FOOTER
 ───────────────────────────────────────────────────────────────── */
 #footer {
   background: var(--carbon);
@@ -639,17 +771,8 @@ a  { text-decoration: none; color: inherit; }
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  max-width: 300px;
-}
-.footer-logo img {
-  height: 36px;
-  width: auto;
-  object-fit: contain;
-}
+.footer-brand { display: flex; flex-direction: column; gap: 18px; max-width: 300px; }
+.footer-logo img { height: 36px; width: auto; object-fit: contain; }
 .footer-tagline {
   font-family: var(--font-title);
   font-size: 18px;
@@ -665,11 +788,7 @@ a  { text-decoration: none; color: inherit; }
   color: rgba(250,247,245,0.4);
 }
 
-.footer-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+.footer-nav { display: flex; flex-direction: column; gap: 14px; }
 .footer-nav-title {
   font-size: 9px;
   font-weight: 600;
@@ -687,11 +806,7 @@ a  { text-decoration: none; color: inherit; }
 }
 .footer-nav a:hover { color: var(--blanco); }
 
-.footer-social {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+.footer-social { display: flex; flex-direction: column; gap: 14px; }
 .footer-social-title {
   font-size: 9px;
   font-weight: 600;
@@ -711,8 +826,7 @@ a  { text-decoration: none; color: inherit; }
 }
 .footer-social a:hover { color: var(--blanco); }
 .social-icon {
-  width: 18px;
-  height: 18px;
+  width: 18px; height: 18px;
   stroke: currentColor;
   fill: none;
   stroke-width: 1.5;
@@ -734,10 +848,7 @@ a  { text-decoration: none; color: inherit; }
   color: rgba(250,247,245,0.28);
   letter-spacing: 0.5px;
 }
-.footer-bottom-links {
-  display: flex;
-  gap: 24px;
-}
+.footer-bottom-links { display: flex; gap: 24px; }
 .footer-bottom-links a {
   font-size: 10px;
   font-weight: 300;
@@ -753,24 +864,64 @@ a  { text-decoration: none; color: inherit; }
 ───────────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .nosotras-inner { gap: 56px; }
+  .nosotras-img { flex: 0 0 360px; }
+  .cliente-inner { gap: 56px; }
+  .cliente-img { flex: 0 0 320px; }
 }
+
 @media (max-width: 860px) {
   #navbar { padding: 0 28px; height: 64px; }
-  #navbar .nav-links { gap: 24px; }
+  .nav-links { gap: 24px; }
   .nav-links a { font-size: 10px; letter-spacing: 2px; }
-  #hero, #proposito, #productos, #valores, #cliente { padding-left: 28px; padding-right: 28px; }
+
+  #hero, #proposito { padding-left: 28px; padding-right: 28px; }
   #productos, #valores { padding: 80px 28px; }
+  #nosotras { padding: 80px 28px; }
+  #cliente   { padding: 80px 28px; }
+
+  .nosotras-inner {
+    flex-direction: column;
+    gap: 48px;
+  }
+  .nosotras-img {
+    flex: none;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .nosotras-img::before { display: none; }
+  .nosotras-content { align-items: center; text-align: center; }
+  .nosotras-text { max-width: 100%; }
+
+  .cliente-inner {
+    flex-direction: column;
+    gap: 48px;
+  }
+  .cliente-text { align-items: center; text-align: center; }
+  .cliente-headline { max-width: 100%; }
+  .cliente-img {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    order: 2;                       /* imagen debajo del texto en mobile */
+  }
+  .cliente-img::after { display: none; }
+
+  .valores-grid { grid-template-columns: 1fr; gap: 24px; }
   .footer-top { flex-direction: column; gap: 36px; }
   #footer { padding: 60px 28px 36px; }
   .footer-bottom { flex-direction: column; text-align: center; }
-  .valores-grid { grid-template-columns: 1fr; gap: 24px; }
 }
+
 @media (max-width: 640px) {
   .products-grid { grid-template-columns: 1fr; }
-  #navbar .nav-links { gap: 14px; }
+  .nav-links { gap: 14px; }
   .nav-links a { letter-spacing: 1.5px; }
   .hero-logo { width: 160px; margin-bottom: 36px; }
   .section-header { align-items: center; text-align: center; }
+  .producto-flatlay { border-radius: 6px; }
 }
 </style>
 </head>
@@ -786,14 +937,14 @@ a  { text-decoration: none; color: inherit; }
   <ul class="nav-links">
     <li><a href="#hero">Inicio</a></li>
     <li><a href="#productos">Productos</a></li>
-    <li><a href="#valores">Nosotras</a></li>
+    <li><a href="#nosotras">Nosotras</a></li>
     <li><a href="#footer">Contacto</a></li>
   </ul>
 </nav>
 
 
 <!-- ══════════════════════════════════════════════════════════════
-     HERO
+     HERO — hero-bg.png + overlay guinda rgba(125,25,53,0.62)
 ══════════════════════════════════════════════════════════════════ -->
 <section id="hero">
   <img src="icono_B.png" alt="" class="hero-deco" aria-hidden="true">
@@ -837,7 +988,7 @@ a  { text-decoration: none; color: inherit; }
 
 
 <!-- ══════════════════════════════════════════════════════════════
-     PRODUCTOS
+     PRODUCTOS — producto-flatlay.png + producto-bote.png en Whey
 ══════════════════════════════════════════════════════════════════ -->
 <section id="productos">
   <div class="section-header reveal">
@@ -845,12 +996,25 @@ a  { text-decoration: none; color: inherit; }
     <h2 class="section-title section-title-light">Nuestras Fórmulas</h2>
   </div>
 
+  <!-- Flatlay destacada antes de las cards -->
+  <img
+    src="producto-flatlay.png"
+    alt="Línea de productos BRAVA Labs"
+    class="producto-flatlay reveal"
+  >
+
   <div class="products-grid">
 
-    <!-- Whey Protein -->
+    <!-- Whey Protein — con imagen de bote -->
     <div class="product-card reveal delay-1">
       <span class="product-number">01</span>
       <span class="product-tag">Clean Label</span>
+      <!-- Imagen del bote centrada en la card -->
+      <img
+        src="producto-bote.png"
+        alt="Whey Protein BRAVA Labs"
+        class="product-img-bote"
+      >
       <h3 class="product-name">Whey Protein</h3>
       <p class="product-desc">Proteína de suero de alta calidad, sin colorantes ni edulcorantes artificiales. 25 g de proteína por porción con perfil de aminoácidos completo.</p>
       <div class="product-footer">
@@ -900,7 +1064,7 @@ a  { text-decoration: none; color: inherit; }
 
 
 <!-- ══════════════════════════════════════════════════════════════
-     VALORES
+     VALORES / PILARES — valores-verdad.png en card Verdad
 ══════════════════════════════════════════════════════════════════ -->
 <section id="valores">
   <div class="section-header section-header-center reveal">
@@ -910,50 +1074,61 @@ a  { text-decoration: none; color: inherit; }
 
   <div class="valores-grid">
 
-    <!-- Verdad -->
+    <!-- Verdad — con imagen de respaldo visual flush arriba -->
     <div class="valor-card reveal delay-1">
-      <div class="valor-icon">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <ellipse cx="12" cy="12" rx="10" ry="6.5"/>
-          <circle cx="12" cy="12" r="2.5" fill="var(--guinda)" stroke="none"/>
-          <path d="M2 12c2.667-4 5.333-6 10-6s7.333 2 10 6"/>
-        </svg>
+      <img
+        src="valores-verdad.png"
+        alt="Verdad — BRAVA Labs"
+        class="valor-visual-img"
+      >
+      <div class="valor-card-body">
+        <div class="valor-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <ellipse cx="12" cy="12" rx="10" ry="6.5"/>
+            <circle cx="12" cy="12" r="2.5" fill="var(--guinda)" stroke="none"/>
+            <path d="M2 12c2.667-4 5.333-6 10-6s7.333 2 10 6"/>
+          </svg>
+        </div>
+        <h3 class="valor-title">Verdad</h3>
+        <p class="valor-desc">Etiquetas limpias, ingredientes reales y dosis funcionales. Lo que lees es exactamente lo que obtienes.</p>
       </div>
-      <h3 class="valor-title">Verdad</h3>
-      <p class="valor-desc">Etiquetas limpias, ingredientes reales y dosis funcionales. Lo que lees es exactamente lo que obtienes.</p>
     </div>
 
     <!-- Evidencia -->
     <div class="valor-card reveal delay-2">
-      <div class="valor-icon">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="8" r="4"/>
-          <path d="M8 8c0-2.2 1.8-4 4-4s4 1.8 4 4"/>
-          <path d="M9 12l-3 7h12l-3-7"/>
-          <line x1="12" y1="8" x2="12" y2="12"/>
-          <circle cx="7" cy="19.5" r="0.5" fill="var(--guinda)" stroke="none"/>
-          <circle cx="12" cy="19.5" r="0.5" fill="var(--guinda)" stroke="none"/>
-          <circle cx="17" cy="19.5" r="0.5" fill="var(--guinda)" stroke="none"/>
-        </svg>
+      <div class="valor-card-body">
+        <div class="valor-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M8 8c0-2.2 1.8-4 4-4s4 1.8 4 4"/>
+            <path d="M9 12l-3 7h12l-3-7"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <circle cx="7" cy="19.5" r="0.5" fill="var(--guinda)" stroke="none"/>
+            <circle cx="12" cy="19.5" r="0.5" fill="var(--guinda)" stroke="none"/>
+            <circle cx="17" cy="19.5" r="0.5" fill="var(--guinda)" stroke="none"/>
+          </svg>
+        </div>
+        <h3 class="valor-title">Evidencia</h3>
+        <p class="valor-desc">Cada ingrediente respaldado por investigación clínica. Sin modas pasajeras, sin ingredientes de relleno.</p>
       </div>
-      <h3 class="valor-title">Evidencia</h3>
-      <p class="valor-desc">Cada ingrediente respaldado por investigación clínica. Sin modas pasajeras, sin ingredientes de relleno.</p>
     </div>
 
     <!-- Para ti -->
     <div class="valor-card reveal delay-3">
-      <div class="valor-icon">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="5" r="2.5"/>
-          <path d="M8 14c0-2.2 1.8-4 4-4s4 1.8 4 4v3H8v-3z"/>
-          <path d="M6 22l2-5M18 22l-2-5"/>
-          <line x1="8" y1="17" x2="16" y2="17"/>
-          <path d="M9.5 11.5c-.5 1-1.5 2-2 3.5" stroke-dasharray="1.5 1.5"/>
-          <path d="M14.5 11.5c.5 1 1.5 2 2 3.5" stroke-dasharray="1.5 1.5"/>
-        </svg>
+      <div class="valor-card-body">
+        <div class="valor-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="5" r="2.5"/>
+            <path d="M8 14c0-2.2 1.8-4 4-4s4 1.8 4 4v3H8v-3z"/>
+            <path d="M6 22l2-5M18 22l-2-5"/>
+            <line x1="8" y1="17" x2="16" y2="17"/>
+            <path d="M9.5 11.5c-.5 1-1.5 2-2 3.5" stroke-dasharray="1.5 1.5"/>
+            <path d="M14.5 11.5c.5 1 1.5 2 2 3.5" stroke-dasharray="1.5 1.5"/>
+          </svg>
+        </div>
+        <h3 class="valor-title">Para ti</h3>
+        <p class="valor-desc">Formulado específicamente para la fisiología femenina, el ciclo hormonal y los objetivos reales de las mujeres activas.</p>
       </div>
-      <h3 class="valor-title">Para ti</h3>
-      <p class="valor-desc">Formulado específicamente para la fisiología femenina, el ciclo hormonal y los objetivos reales de las mujeres activas.</p>
     </div>
 
   </div>
@@ -961,23 +1136,63 @@ a  { text-decoration: none; color: inherit; }
 
 
 <!-- ══════════════════════════════════════════════════════════════
-     CLIENTE IDEAL
+     NOSOTRAS — nueva sección · nosotras.png lado izquierdo
+══════════════════════════════════════════════════════════════════ -->
+<section id="nosotras">
+  <div class="nosotras-inner">
+
+    <!-- Imagen lado izquierdo -->
+    <div class="nosotras-img reveal">
+      <img src="nosotras.png" alt="Equipo BRAVA Labs">
+    </div>
+
+    <!-- Texto lado derecho -->
+    <div class="nosotras-content">
+      <p class="section-eyebrow reveal" style="color:var(--rosa);">Quiénes somos</p>
+      <div class="nosotras-rule reveal delay-1">
+        <span class="nosotras-rule-line"></span>
+        <span class="nosotras-rule-dot"></span>
+      </div>
+      <h2 class="nosotras-title reveal delay-1">Somos BRAVA Labs.</h2>
+      <p class="nosotras-text reveal delay-2">
+        La <strong>primera marca mexicana de suplementos</strong> formulada con honestidad radical para la mujer activa. Creemos que mereces saber exactamente qué hay en cada fórmula — y exactamente por qué está ahí.
+      </p>
+      <p class="nosotras-tagline reveal delay-3">Sé brava. Sé real.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     CLIENTE IDEAL — cliente-ideal.png lado derecho
 ══════════════════════════════════════════════════════════════════ -->
 <section id="cliente">
-  <p class="section-eyebrow reveal" style="color:var(--guinda-mid);">¿Eres tú?</p>
-  <div class="cliente-rule reveal delay-1">
-    <span class="cliente-rule-line"></span>
-    <span class="cliente-rule-dot"></span>
-    <span class="cliente-rule-line"></span>
+  <div class="cliente-inner">
+
+    <!-- Texto lado izquierdo -->
+    <div class="cliente-text">
+      <p class="section-eyebrow reveal" style="color:var(--guinda-mid);">¿Eres tú?</p>
+      <div class="cliente-rule reveal delay-1">
+        <span class="cliente-rule-line"></span>
+        <span class="cliente-rule-dot"></span>
+      </div>
+      <h2 class="cliente-headline reveal delay-2">
+        Para la mujer que investiga antes de comprar.
+      </h2>
+      <div class="cliente-sub reveal delay-3">
+        <p>Para la que ya fue engañada una vez y no vuelve a caer.</p>
+        <p>Para la que sabe que su cuerpo merece la verdad.</p>
+      </div>
+      <a href="#productos" class="btn-guinda reveal delay-4">Soy BRAVA</a>
+    </div>
+
+    <!-- Imagen lado derecho / debajo en mobile -->
+    <div class="cliente-img reveal delay-2">
+      <img src="cliente-ideal.png" alt="Mujer BRAVA Labs">
+    </div>
+
   </div>
-  <h2 class="cliente-headline reveal delay-2">
-    Para la mujer que investiga antes de comprar.
-  </h2>
-  <div class="cliente-sub reveal delay-3">
-    <p>Para la que ya fue engañada una vez y no vuelve a caer.</p>
-    <p>Para la que sabe que su cuerpo merece la verdad.</p>
-  </div>
-  <a href="#productos" class="btn-guinda reveal delay-4">Soy BRAVA</a>
 </section>
 
 
@@ -1000,9 +1215,10 @@ a  { text-decoration: none; color: inherit; }
     <nav class="footer-nav">
       <p class="footer-nav-title">Navegación</p>
       <a href="#hero">Inicio</a>
-      <a href="#proposito">Nosotras</a>
+      <a href="#proposito">Propósito</a>
       <a href="#productos">Productos</a>
       <a href="#valores">Pilares</a>
+      <a href="#nosotras">Nosotras</a>
       <a href="#cliente">Comunidad</a>
     </nav>
 
@@ -1047,7 +1263,7 @@ a  { text-decoration: none; color: inherit; }
     navbar.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  /* ── Intersection Observer for reveal animations ── */
+  /* ── Intersection Observer: reveal al scroll ── */
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1057,12 +1273,12 @@ a  { text-decoration: none; color: inherit; }
       }
     });
   }, {
-    threshold: 0.12,
+    threshold: 0.10,
     rootMargin: '0px 0px -40px 0px'
   });
   revealEls.forEach(el => observer.observe(el));
 
-  /* ── Smooth active nav highlight ── */
+  /* ── Active nav highlight por sección visible ── */
   const sections = document.querySelectorAll('section[id], footer[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -1076,7 +1292,7 @@ a  { text-decoration: none; color: inherit; }
         });
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.35 });
   sections.forEach(s => sectionObserver.observe(s));
 </script>
 
