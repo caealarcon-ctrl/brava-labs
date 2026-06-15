@@ -80,7 +80,7 @@ a  { text-decoration: none; color: inherit; }
   border-color: rgba(125, 25, 53, 0.12);
   box-shadow: 0 2px 32px rgba(42,42,42,0.07);
 }
-.nav-logo img { height: 38px; width: auto; object-fit: contain; }
+.nav-logo img { height: 52px; width: auto; object-fit: contain; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -860,6 +860,305 @@ a  { text-decoration: none; color: inherit; }
 
 
 /* ─────────────────────────────────────────────────────────────────
+   9. TRUST BAR
+───────────────────────────────────────────────────────────────── */
+#trust-bar {
+  background: var(--guinda);
+  padding: 20px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 36px;
+  position: relative;
+}
+.trust-item + .trust-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  height: 22px; width: 1px;
+  background: rgba(250,247,245,0.22);
+}
+.trust-icon {
+  width: 18px; height: 18px;
+  stroke: var(--rosa);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.trust-text {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--blanco);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   10. TESTIMONIALES
+───────────────────────────────────────────────────────────────── */
+#testimoniales {
+  background: var(--rosa-light);
+  padding: 120px 56px;
+  position: relative;
+  overflow: hidden;
+}
+#testimoniales::before {
+  content: '';
+  position: absolute;
+  bottom: -80px; right: -80px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(125,25,53,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.testimoniales-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonio-card {
+  background: var(--blanco);
+  border: 1px solid rgba(125,25,53,0.10);
+  border-radius: 6px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: border-color 0.3s, box-shadow 0.4s, transform 0.4s var(--ease-out);
+}
+.testimonio-card:hover {
+  border-color: rgba(125,25,53,0.25);
+  box-shadow: 0 16px 48px rgba(125,25,53,0.09);
+  transform: translateY(-4px);
+}
+
+.testimonio-stars {
+  color: var(--guinda);
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.testimonio-quote {
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--carbon);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.testimonio-author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(125,25,53,0.08);
+}
+.testimonio-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--guinda);
+}
+.testimonio-role {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gray-text);
+  letter-spacing: 0.5px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   11. FORMULARIO — Descubre tu fórmula ideal
+───────────────────────────────────────────────────────────────── */
+#formula {
+  background: var(--carbon);
+  padding: 120px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#formula::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,180,191,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.formula-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+}
+
+.formula-subtitle {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--gray-soft);
+  margin-top: 20px;
+  margin-bottom: 48px;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formula-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formula-input {
+  background: rgba(250,247,245,0.05);
+  border: 1px solid rgba(232,180,191,0.2);
+  border-radius: 2px;
+  padding: 18px 22px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: var(--blanco);
+  width: 100%;
+  transition: border-color 0.25s, background 0.25s;
+  outline: none;
+}
+.formula-input::placeholder { color: rgba(250,247,245,0.3); }
+.formula-input:focus {
+  border-color: rgba(232,180,191,0.55);
+  background: rgba(250,247,245,0.08);
+}
+
+.btn-formula {
+  background: var(--guinda);
+  color: var(--blanco);
+  border: none;
+  border-radius: 2px;
+  padding: 18px 46px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+  box-shadow: 0 4px 24px rgba(125,25,53,0.35);
+  margin-top: 4px;
+}
+.btn-formula:hover {
+  background: var(--guinda-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(125,25,53,0.5);
+}
+
+.formula-disclaimer {
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(250,247,245,0.2);
+  letter-spacing: 0.5px;
+  margin-top: 14px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   12. FAQ
+───────────────────────────────────────────────────────────────── */
+#faq {
+  background: var(--blanco);
+  padding: 120px 56px;
+}
+
+.faq-list {
+  max-width: 740px;
+  margin: 56px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(125,25,53,0.12);
+}
+.faq-item:first-child { border-top: 1px solid rgba(125,25,53,0.12); }
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--carbon);
+  transition: color 0.25s;
+}
+.faq-question:hover { color: var(--guinda); }
+
+.faq-chevron {
+  width: 20px; height: 20px;
+  stroke: var(--guinda);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease-out);
+}
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s var(--ease-out), padding 0.35s;
+}
+.faq-item.open .faq-answer { max-height: 300px; }
+
+.faq-answer-inner {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--gray-text);
+  padding-bottom: 28px;
+  max-width: 640px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
@@ -868,6 +1167,7 @@ a  { text-decoration: none; color: inherit; }
   .nosotras-img { flex: 0 0 360px; }
   .cliente-inner { gap: 56px; }
   .cliente-img { flex: 0 0 320px; }
+  .testimoniales-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 860px) {
@@ -910,6 +1210,10 @@ a  { text-decoration: none; color: inherit; }
   .cliente-img::after { display: none; }
 
   .valores-grid { grid-template-columns: 1fr; gap: 24px; }
+  .testimoniales-grid { grid-template-columns: 1fr; }
+  #trust-bar { padding: 16px 20px; gap: 0; }
+  .trust-item { padding: 8px 16px; }
+  #testimoniales, #formula, #faq { padding: 80px 28px; }
   .footer-top { flex-direction: column; gap: 36px; }
   #footer { padding: 60px 28px 36px; }
   .footer-bottom { flex-direction: column; text-align: center; }
@@ -931,9 +1235,11 @@ a  { text-decoration: none; color: inherit; }
      NAVBAR
 ══════════════════════════════════════════════════════════════════ -->
 <nav id="navbar">
-  <a href="#hero" class="nav-logo">
-    <img src="logo_completo.png" alt="BRAVA Labs">
-  </a>
+  <div class="nav-logo">
+    <a href="#hero" style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; letter-spacing:3px; color:var(--guinda); text-decoration:none;">
+      BRAVA <span style="font-weight:300; font-size:14px; letter-spacing:6px;">Labs</span>
+    </a>
+  </div>
   <ul class="nav-links">
     <li><a href="#hero">Inicio</a></li>
     <li><a href="#productos">Productos</a></li>
@@ -967,6 +1273,37 @@ a  { text-decoration: none; color: inherit; }
     <div class="scroll-line"></div>
   </div>
 </section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     TRUST BAR
+══════════════════════════════════════════════════════════════════ -->
+<div id="trust-bar">
+  <div class="trust-item reveal">
+    <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+    <span class="trust-text">500+ mujeres bravas</span>
+  </div>
+  <div class="trust-item reveal delay-1">
+    <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <polyline points="9 12 11 14 15 10"/>
+    </svg>
+    <span class="trust-text">Clean Label certificado</span>
+  </div>
+  <div class="trust-item reveal delay-2">
+    <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 8v4l3 3"/>
+      <path d="M8 3.5C9.2 2.6 10.5 2 12 2"/>
+    </svg>
+    <span class="trust-text">Fisiología femenina</span>
+  </div>
+</div>
 
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -1027,6 +1364,7 @@ a  { text-decoration: none; color: inherit; }
     <div class="product-card reveal delay-2">
       <span class="product-number">02</span>
       <span class="product-tag">Clean Label</span>
+      <img src="producto-flatlay.png" alt="Plant Protein BRAVA Labs" class="product-img-bote">
       <h3 class="product-name">Plant Protein</h3>
       <p class="product-desc">Blend de proteína vegetal a base de guisante y arroz integral. 100% plant-based, digestión suave, sin comprometer la síntesis muscular.</p>
       <div class="product-footer">
@@ -1039,6 +1377,7 @@ a  { text-decoration: none; color: inherit; }
     <div class="product-card reveal delay-3">
       <span class="product-number">03</span>
       <span class="product-tag">Clean Label</span>
+      <img src="Untitled Project - AI Image board.png" alt="Colágeno Funcional BRAVA Labs" class="product-img-bote">
       <h3 class="product-name">Colágeno Funcional</h3>
       <p class="product-desc">Colágeno hidrolizado tipo I y III con vitamina C, biotina y ácido hialurónico. Piel, articulaciones y recuperación en una sola fórmula.</p>
       <div class="product-footer">
@@ -1051,6 +1390,7 @@ a  { text-decoration: none; color: inherit; }
     <div class="product-card reveal delay-4">
       <span class="product-number">04</span>
       <span class="product-tag">Clean Label</span>
+      <img src="cliente-ideal.png" alt="Stack Hormonal BRAVA Labs" class="product-img-bote">
       <h3 class="product-name">Stack Hormonal</h3>
       <p class="product-desc">Adaptógenos y micronutrientes seleccionados para equilibrio hormonal femenino: ashwagandha, maca, inositol y vitex. Evidencia, no moda.</p>
       <div class="product-footer">
@@ -1197,6 +1537,136 @@ a  { text-decoration: none; color: inherit; }
 
 
 <!-- ══════════════════════════════════════════════════════════════
+     TESTIMONIALES
+══════════════════════════════════════════════════════════════════ -->
+<section id="testimoniales">
+  <div class="section-header section-header-center reveal">
+    <p class="section-eyebrow">Lo que dicen ellas</p>
+    <h2 class="section-title section-title-guinda">Mujeres bravas, resultados reales</h2>
+  </div>
+
+  <div class="testimoniales-grid">
+
+    <div class="testimonio-card reveal delay-1">
+      <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-quote">"Llevaba meses buscando una proteína que no me cayera pesada. Con el Whey de BRAVA noté la diferencia desde la primera semana. Sin inflamación, sin sabores artificiales ridículos."</p>
+      <div class="testimonio-author">
+        <span class="testimonio-name">Sofía Ramírez</span>
+        <span class="testimonio-role">Entrenadora funcional · CDMX, 31 años</span>
+      </div>
+    </div>
+
+    <div class="testimonio-card reveal delay-2">
+      <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-quote">"El Stack Hormonal cambió mi relación con el ciclo. Menos bajones de energía, mejor humor. Por fin una marca que habla de fisiología femenina en serio, no de marketing rosa."</p>
+      <div class="testimonio-author">
+        <span class="testimonio-name">Valentina Cruz</span>
+        <span class="testimonio-role">Nutrióloga · Monterrey, 38 años</span>
+      </div>
+    </div>
+
+    <div class="testimonio-card reveal delay-3">
+      <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-quote">"Soy muy exigente con las etiquetas — leo cada ingrediente. BRAVA es la única marca mexicana donde no encontré nada que no debería estar ahí. Eso vale mucho."</p>
+      <div class="testimonio-author">
+        <span class="testimonio-name">Daniela Flores</span>
+        <span class="testimonio-role">Atleta de CrossFit · Guadalajara, 27 años</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     FORMULARIO — Descubre tu fórmula ideal
+══════════════════════════════════════════════════════════════════ -->
+<section id="formula">
+  <div class="formula-inner">
+    <p class="section-eyebrow reveal" style="color:var(--rosa);">Personaliza tu experiencia</p>
+    <h2 class="section-title section-title-light reveal delay-1">Descubre tu fórmula ideal</h2>
+    <p class="formula-subtitle reveal delay-2">Cuéntanos quién eres y te enviamos una recomendación personalizada según tus objetivos y fisiología.</p>
+
+    <form class="formula-form reveal delay-3" onsubmit="handleFormula(event)">
+      <input
+        type="text"
+        class="formula-input"
+        placeholder="Tu nombre"
+        name="nombre"
+        autocomplete="given-name"
+        required
+      >
+      <input
+        type="email"
+        class="formula-input"
+        placeholder="Tu correo electrónico"
+        name="email"
+        autocomplete="email"
+        required
+      >
+      <button type="submit" class="btn-formula">Quiero mi fórmula ideal</button>
+    </form>
+    <p class="formula-disclaimer reveal delay-4">Sin spam. Solo tu recomendación personalizada.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="section-header section-header-center reveal">
+    <p class="section-eyebrow">Tus dudas, resueltas</p>
+    <h2 class="section-title section-title-guinda">Preguntas frecuentes</h2>
+  </div>
+
+  <div class="faq-list">
+
+    <div class="faq-item reveal delay-1">
+      <button class="faq-question" aria-expanded="false">
+        ¿Qué significa "Clean Label" y por qué importa?
+        <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer" role="region">
+        <p class="faq-answer-inner">Clean Label significa que cada ingrediente que ves en la etiqueta tiene una razón científica de estar ahí, en la dosis funcional correcta. Sin rellenos, sin colorantes artificiales, sin proprietary blends que ocultan cuánto hay de cada activo. Lo que lees es exactamente lo que obtienes.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal delay-2">
+      <button class="faq-question" aria-expanded="false">
+        ¿En qué se diferencia BRAVA de otras marcas de suplementos?
+        <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer" role="region">
+        <p class="faq-answer-inner">La mayoría de las marcas formulan suplementos genéricos y les ponen empaque rosa. BRAVA nació al revés: primero la ciencia de la fisiología femenina — ciclo hormonal, metabolismo, recuperación muscular — y después la fórmula. Cada producto responde a una necesidad real, respaldada por investigación clínica.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal delay-3">
+      <button class="faq-question" aria-expanded="false">
+        ¿Cuánto tarda el envío y a dónde entregan?
+        <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer" role="region">
+        <p class="faq-answer-inner">Enviamos a toda la República Mexicana. Los pedidos se procesan en 1–2 días hábiles y el tiempo de entrega estimado es de 3–5 días hábiles según tu código postal. Envío gratis en compras mayores a $999 MXN.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal delay-4">
+      <button class="faq-question" aria-expanded="false">
+        ¿Los ingredientes son seguros si tomo otros medicamentos o suplementos?
+        <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer" role="region">
+        <p class="faq-answer-inner">Nuestras fórmulas usan ingredientes naturales a dosis estudiadas, pero siempre recomendamos consultar con tu médico o nutrióloga si estás bajo tratamiento farmacológico, embarazada o en periodo de lactancia. Puedes escribirnos y con gusto te orientamos sobre cada ingrediente.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════════════════════════════ -->
 <footer id="footer">
@@ -1277,6 +1747,38 @@ a  { text-decoration: none; color: inherit; }
     rootMargin: '0px 0px -40px 0px'
   });
   revealEls.forEach(el => observer.observe(el));
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── Formulario fórmula ideal ── */
+  function handleFormula(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-formula');
+    const original = btn.textContent;
+    btn.textContent = '¡Listo! Te escribimos pronto ✓';
+    btn.style.background = 'var(--guinda-dark)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3500);
+  }
 
   /* ── Active nav highlight por sección visible ── */
   const sections = document.querySelectorAll('section[id], footer[id]');
